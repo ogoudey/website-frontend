@@ -29,6 +29,20 @@
       border-bottom: 1px solid #ccc;
     }
 
+    #tooltip {
+      position: fixed;
+      background: #222;
+      color: #fff;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      pointer-events: none;
+      white-space: pre;
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 999;
+    }
+
     #cy {
       width: 100%;
       height: calc(100% - 50px);
@@ -47,7 +61,7 @@
     <button id="reload-btn">Reload Graph</button>
     <span id="status">Loading...</span>
   </div>
-
+  <div id="tooltip"></div>
   <div id="cy"></div>
 
   <script src="/static/app.js"></script>

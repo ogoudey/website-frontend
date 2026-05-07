@@ -82,6 +82,26 @@ cy.on('tap', 'node', function(evt) {
   document.getElementById('status').textContent = info;
 });
 
+const tooltip = document.getElementById('tooltip');
+
+cy.on('tap', 'node', function(evt) {
+  const node = evt.target;
+  const ancestors = node.ancestors().toArray().reverse();
+  const path = ancestors.map(n => `${n.data('type')}: ${n.data('label')}`).join(' → ');
+  const line1 = `${node.data('type')}: ${node.data('label')}`;
+  tooltip.textContent = path ? `${path} → ${line1}` : line1;
+  tooltip.style.opacity = '1';
+});
+
+cy.on('tap', function(evt) {
+  if (evt.target === cy) tooltip.style.opacity = '0'; // clicked background = dismiss
+});
+
+cy.on('mousemove', function(evt) {
+  tooltip.style.left = (evt.originalEvent.clientX + 12) + 'px';
+  tooltip.style.top  = (evt.originalEvent.clientY + 12) + 'px';
+});
+
 ///////////////////////////////////////////////////////////
 // 2. Fetch graph data from API
 ///////////////////////////////////////////////////////////
@@ -180,18 +200,6 @@ async function loadGraph() {
 document
   .getElementById('reload-btn')
   .addEventListener('click', loadGraph);
-
-///////////////////////////////////////////////////////////
-// 6. Node interaction
-///////////////////////////////////////////////////////////
-
-cy.on('tap', 'node', (event) => {
-  const node = event.target;
-
-  console.log('Clicked node:', node.data());
-
-  alert(`Node: ${node.data().label}`);
-});
 
 ///////////////////////////////////////////////////////////
 // 7. Initial load
