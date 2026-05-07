@@ -23,19 +23,19 @@ const cy = cytoscape({
     },
     {
       selector: 'node[type = "local_area"]',
-      style: { 'background-color': '#534AB7', 'color': '#fff' }
+      style: { 'background-color': '#534AB7', 'color': '#111' }
     },
     {
       selector: 'node[type = "lan"]',
-      style: { 'background-color': '#0F6E56', 'color': '#fff' }
+      style: { 'background-color': '#0F6E56', 'color': '#111' }
     },
     {
       selector: 'node[type = "host"]',
-      style: { 'background-color': '#185FA5', 'color': '#fff' }
+      style: { 'background-color': '#185FA5', 'color': '#111' }
     },
     {
       selector: 'node[type = "agent"]',
-      style: { 'background-color': '#BA7517', 'color': '#fff' }
+      style: { 'background-color': '#BA7517', 'color': '#111' }
     },
     {
       selector: ':parent',
