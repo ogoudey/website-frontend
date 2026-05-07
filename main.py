@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 OLIMN_API_KEY = os.environ.get("OLIMN_API_KEY", None)
-
+OLIMN_API_KEY = "poppoppop"
 if not OLIMN_API_KEY:
     raise ValueError("Please set OLIMN_API_KEY")
 
