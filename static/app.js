@@ -65,6 +65,23 @@ const cy = cytoscape({
   }
 });
 
+// Cytoscape behavior changes
+cy.on('tap', 'node', function(evt) {
+  const node = evt.target;
+  const ancestors = node.ancestors(); // built-in cytoscape method
+
+  let info = `Node: ${node.data('label')} (${node.data('type')})`;
+  if (ancestors.length > 0) {
+    const path = ancestors.toArray()
+      .reverse() // ancestors goes child→root, reverse for root→child
+      .map(n => `${n.data('type')}: ${n.data('label')}`)
+      .join(' → ');
+    info += `\nPath: ${path}`;
+  }
+
+  document.getElementById('status').textContent = info;
+});
+
 ///////////////////////////////////////////////////////////
 // 2. Fetch graph data from API
 ///////////////////////////////////////////////////////////
@@ -90,6 +107,27 @@ function convertToCytoscapeElements(graphData) {
   }));
 
   return [...nodeElements, ...edgeElements];
+}
+
+// Helper for cytoscape post-processing
+function collapseSingletons(cy) {
+  let changed = true;
+  while (changed) {
+    changed = false;
+    cy.nodes().forEach(node => {
+      const children = node.children();
+      if (children.length === 1) {
+        const child = children[0];
+        const grandchildren = child.children();
+        if (grandchildren.length === 0) {
+          // child is a leaf — move it out, remove the parent
+          child.move({ parent: node.data('parent') ?? null });
+          cy.remove(node);
+          changed = true;
+        }
+      }
+    });
+  }
 }
 
 async function loadGraph() {
@@ -124,10 +162,8 @@ async function loadGraph() {
     // 4. Run layout
     ///////////////////////////////////////////////////////////
 
-    cy.layout({
-      name: 'cose',
-      animate: true
-    }).run();
+    collapseSingletons(cy);   // <-- here
+    cy.layout({ name: 'cose-bilkent' }).run();
 
     status.textContent = 'Loaded';
 
