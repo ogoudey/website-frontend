@@ -86,20 +86,14 @@ const tooltip = document.getElementById('tooltip');
 
 cy.on('tap', 'node', function(evt) {
   const node = evt.target;
-  const ancestors = node.ancestors().toArray().reverse();
-  const path = ancestors.map(n => `${n.data('type')}: ${n.data('label')}`).join(' → ');
-  const line1 = `${node.data('type')}: ${node.data('label')}`;
-  const pathLine = path ? `${path} → ${line1}` : line1;
-
-  // Parse metadata
-  let metaLine = '';
   const meta = node.data('metadata');
+
   if (meta) {
-    if (meta.status)  metaLine += `Status: ${meta.status}\n`;
-    if (meta.message) metaLine += `\n${meta.message}`;
+    tooltip.textContent = `${meta.status}\n\n${meta.message}`;
+  } else {
+    tooltip.textContent = node.data('label');
   }
 
-  tooltip.textContent = metaLine ? `${pathLine}\n${metaLine}` : pathLine;
   tooltip.style.opacity = '1';
 });
 
