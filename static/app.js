@@ -86,9 +86,11 @@ const tooltip = document.getElementById('tooltip');
 
 cy.on('tap', 'node', function(evt) {
   const node = evt.target;
-  const meta = node.data('metadata');
-
-  if (meta) {
+  console.log(node.data('metadata'));
+  const raw = node.data('metadata');
+  
+  if (raw) {
+    const meta = typeof raw === 'string' ? JSON.parse(raw) : raw;
     tooltip.textContent = `${meta.status}\n\n${meta.message}`;
   } else {
     tooltip.textContent = node.data('label');
