@@ -89,7 +89,22 @@ cy.on('tap', 'node', function(evt) {
   const ancestors = node.ancestors().toArray().reverse();
   const path = ancestors.map(n => `${n.data('type')}: ${n.data('label')}`).join(' → ');
   const line1 = `${node.data('type')}: ${node.data('label')}`;
-  tooltip.textContent = path ? `${path} → ${line1}` : line1;
+  const pathLine = path ? `${path} → ${line1}` : line1;
+
+  // Parse metadata
+  let metaLine = '';
+  const rawMeta = node.data('metadata');
+  if (rawMeta) {
+    try {
+      const meta = JSON.parse(rawMeta);
+      if (meta.status)  metaLine += `Status: ${meta.status}\n`;
+      if (meta.message) metaLine += `Message: ${meta.message}`;
+    } catch (e) {
+      metaLine = rawMeta; // fallback to raw string if parse fails
+    }
+  }
+
+  tooltip.textContent = metaLine ? `${pathLine}\n${metaLine}` : pathLine;
   tooltip.style.opacity = '1';
 });
 
