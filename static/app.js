@@ -93,15 +93,10 @@ cy.on('tap', 'node', function(evt) {
 
   // Parse metadata
   let metaLine = '';
-  const rawMeta = node.data('metadata');
-  if (rawMeta) {
-    try {
-      const meta = JSON.parse(rawMeta);
-      if (meta.status)  metaLine += `Status: ${meta.status}\n`;
-      if (meta.message) metaLine += `Message: ${meta.message}`;
-    } catch (e) {
-      metaLine = rawMeta; // fallback to raw string if parse fails
-    }
+  const meta = node.data('metadata');
+  if (meta) {
+    if (meta.status)  metaLine += `Status: ${meta.status}\n`;
+    if (meta.message) metaLine += `\n${meta.message}`;
   }
 
   tooltip.textContent = metaLine ? `${pathLine}\n${metaLine}` : pathLine;
