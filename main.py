@@ -9,10 +9,16 @@ OLIMN_API_KEY = "poppoppop"
 if not OLIMN_API_KEY:
     raise ValueError("Please set OLIMN_API_KEY")
 
+# ----------- GUI handler ------------ #
 @app.route("/")
 def index():
     return render_template("index.html")
 
+@app.route("/render_network")
+def index():
+    return render_template("network_page.html")
+
+# ---------------- API ------------------- #
 @app.route("/graph")
 def get_graph():
 

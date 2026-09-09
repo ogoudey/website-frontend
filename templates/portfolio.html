@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <title>Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #222;
+        }
+        nav a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #444;
+        }
+        .content {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+        }
+        .portfolio-item {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Portfolio</h1>
+        <p>Explore my recent projects and work.</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="blog.html">Blog</a>
+    </nav>
+
+    <div class="content">
+        <h2>Recent Projects</h2>
+        
+        <div class="portfolio-item">
+            <h3>TendOcean.com and C. A. Goudey & Associates</h3>
+            <p>Developed two websites.</p>
+            <p>Check them out at <a href="https://cagoudey.com/index.html">cagoudey.com</a> and <a href="https://tendocean.com/">tendocean.com</a>.</p>
+        </div>
+        
+        <div class="portfolio-item">
+            <h3>The Daily Viewer</h3>
+            <p>A proof of concept for a platform on which to integrate robotics into the service industry.</p>
+            <p>More details at the <a href="https://github.com/ogoudey/Daily-Viewer">Github repository</a>.</p>
+        </div>
+        
+        <div class="portfolio-item">
+            <h3>Objective-based Reinforcement Learning for Robotics</h3>
+            <p>A practical way to train in simulation and deploy learned policies on robots. Tested on the Kinova robotic arm.</p>
+            <p>Check out the <a href="https://github.com/ogoudey/obrlr">Github repository</a>.</p>
+        </div>
+        
+        <div class="portfolio-item">
+            <h3>Complex Cobotics</h3>
+            <p>An interface for an interactive and collaborative robot. This project is a unique framework for its goal, bringing together a few different ideas - a cognitive architecture, a collaborative/rule-following component, and automatic plan-based motor control. The effectiveness has yet to seriously be measured, but it's a start.</p>
+            <p>More in-depth descriptions are on the <a href="https://github.com/ogoudey/complex-cobot">Github repository</a>.</p>
+        </div>
+        
+        <div class="portfolio-item">
+            <h3>LLM Planning Pruner</h3>
+            <p>I worked with a team of three other graduate students to demonstrate a novel usage of LLMs, namely, using them in a cognitive architecture to prune planning domains of complex environments. I took a leading role in the initial development by laying the foundation of the implementation for the rest of the group to add. See <a href="https://github.com/brennanmk/prune-llm">Github</a> for the final submission.</p>
+        </div>
+
+        <div class="portfolio-item">
+            <h3>Ned2Autonomy</h3>
+            <p>An application of a brain-computer interface (a functional Near Infrared Spectroscopy (fNIRS) machine) to decide control over a robotic arm (remote or autonomous).</p>
+            <p>Again, the <a href="https://github.com/ogoudey/Ned2Autonomy">repository</a>.</p>
+        </div>
+        
+        <div class="portfolio-item">
+            <h3>Personal Website</h3>
+            <p>Yes, this website.</p>
+            <p>You too can create a webpage like this! Actually securing a space on the internet is slightly more involved. But I can help!</p>
+        </div>
+
+        <div class="portfolio-item">
+            <h3>The Battlebot (Jake)</h3>
+            <p>Of course there's this battlebot, the winner of the Tufts Robotics 2024 Fall Competition.</p>
+            <p>The model (more or less) is on <a href="https://github.com/ogoudey/Battlebot">Github</a> as well as the code.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Olin Goudey. All rights reserved.</p>
+    </footer>
+</body>
+</html>
